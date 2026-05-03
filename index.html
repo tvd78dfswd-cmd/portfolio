@@ -1,10 +1,12 @@
-header {
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: linear-gradient(135deg, rgba(26, 20, 16, 0.7), rgba(26, 20, 16, 0.7)), url('https://github.com/tvd78dfswd-cmd/portfolio/blob/main/scout-experience.png?raw=true') center/cover no-repeat;
-    /* Additional styles can be maintained or added below */
+    z-index: 1;
 }
 
-header::before {
-    /* Modify this pseudo-element's background to complement the image */
-    background: rgba(255, 255, 255, 0.5); /* Example of a lighter background effect */
-    /* Additional properties may be added */
-}
+/* other existing styles for header keep intact */
