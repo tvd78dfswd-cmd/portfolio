@@ -3,76 +3,305 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isaac Chen, AIA</title>
+  <title>Isaac Chen, AIA - Adventurous Design</title>
 
   <!-- GSAP for smooth animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
   <style>
-    body { font-family: Helvetica, sans-serif; margin: 0; background: #ffffff; color: #111; overflow-x: hidden; }
+    * { box-sizing: border-box; }
 
-    header { padding: 80px 20px; text-align: center; border-bottom: 1px solid #eee; opacity: 0; transform: translateY(30px); }
-    header h1 { margin: 0; font-size: 3em; letter-spacing: -1px; }
-    header p { margin-top: 10px; color: #666; }
+    body { 
+      font-family: 'Segoe UI', Helvetica, sans-serif; 
+      margin: 0; 
+      background: linear-gradient(135deg, #1a1410 0%, #2d2420 100%);
+      color: #e8e4d9; 
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
 
-    nav { display: flex; justify-content: center; gap: 30px; padding: 15px; border-bottom: 1px solid #eee; }
-    nav a { text-decoration: none; color: #111; font-size: 0.9em; position: relative; }
-    nav a::after {
+    /* Animated background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(139, 101, 66, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(101, 139, 101, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    header { 
+      padding: 120px 20px 80px; 
+      text-align: center; 
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 101, 66, 0.12) 0%, transparent 70%);
+      animation: float 6s ease-in-out infinite;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(101, 139, 101, 0.12) 0%, transparent 70%);
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    header h1 { 
+      margin: 0; 
+      font-size: 4.5em; 
+      letter-spacing: -2px;
+      color: #d4af8f;
+      font-weight: 900;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideInUp 1s ease-out forwards;
+    }
+
+    header h2 {
+      font-size: 1.8em;
+      color: #a89060;
+      margin: 15px 0 0 0;
+      font-weight: 600;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 0.2s forwards;
+    }
+
+    header p { 
+      margin-top: 15px; 
+      color: #b8a898;
+      font-size: 1.1em;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0;
+      animation: slideInUp 1s ease-out 0.4s forwards;
+    }
+
+    nav { 
+      display: flex; 
+      justify-content: center; 
+      gap: 40px; 
+      padding: 30px; 
+      backdrop-filter: blur(10px);
+      background: rgba(26, 20, 16, 0.6);
+      border-bottom: 1px solid rgba(168, 144, 96, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a { 
+      text-decoration: none; 
+      color: #d4af8f;
+      font-size: 0.95em; 
+      position: relative;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a::before {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -3px;
+      bottom: -8px;
       width: 0%;
-      height: 1px;
-      background: #111;
-      transition: width 0.3s ease;
+      height: 2px;
+      background: #a89060;
+      transition: width 0.4s ease;
     }
-    nav a:hover::after { width: 100%; }
 
-    section { padding: 80px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); }
+    nav a:hover {
+      color: #d4af8f;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    nav a:hover::before { 
+      width: 100%;
+    }
+
+    section { 
+      padding: 100px 20px; 
+      max-width: 1200px; 
+      margin: auto; 
+      position: relative;
+      z-index: 1;
+    }
+
+    section h2 {
+      font-size: 2.8em;
+      margin-bottom: 15px;
+      color: #d4af8f;
+    }
+
+    section > p {
+      color: #b8a898;
+      line-height: 1.8;
+      font-size: 1.05em;
+      max-width: 800px;
+    }
+
+    .grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+      gap: 40px;
+      margin-top: 50px;
+    }
 
     .card {
-      border: 1px solid #eee;
-      border-radius: 16px;
+      border: 1px solid rgba(168, 144, 96, 0.3);
+      border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      background: white;
+      background: linear-gradient(135deg, rgba(139, 101, 66, 0.08), rgba(101, 139, 101, 0.08));
+      backdrop-filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+      transition: left 0.6s ease;
+      z-index: 2;
+    }
+
+    .card:hover::before {
+      left: 100%;
     }
 
     .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      transform: translateY(-20px) scale(1.02);
+      border-color: rgba(168, 144, 96, 0.6);
+      box-shadow: 0 30px 60px rgba(139, 101, 66, 0.15), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.08);
     }
 
     .card img {
       width: 100%;
-      height: 240px;
+      height: 280px;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: brightness(0.85) sepia(0.1);
     }
 
     .card:hover img {
-      transform: scale(1.05);
+      transform: scale(1.1) rotate(2deg);
+      filter: brightness(0.95) sepia(0.1);
     }
 
-    .card-content { padding: 20px; }
+    .card-content { 
+      padding: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h3 {
+      font-size: 1.5em;
+      margin: 0 0 10px 0;
+      color: #d4af8f;
+    }
+
+    .card p {
+      color: #b8a898;
+      line-height: 1.6;
+      margin: 0;
+    }
 
     .btn {
       display: inline-block;
-      margin-top: 10px;
-      font-size: 0.85em;
+      margin-top: 15px;
+      font-size: 0.9em;
       text-decoration: none;
-      color: #111;
-      border-bottom: 1px solid #111;
-      transition: opacity 0.3s;
+      color: #d4af8f;
+      border: 2px solid #a89060;
+      padding: 10px 20px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn:hover { opacity: 0.6; }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #a89060;
+      z-index: -1;
+      transition: left 0.3s ease;
+    }
 
-    footer { text-align: center; padding: 40px; color: #777; font-size: 0.8em; }
+    .btn:hover {
+      color: #1a1410;
+      left: 0;
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    footer { 
+      text-align: center; 
+      padding: 60px 20px; 
+      color: #8b7d6b; 
+      font-size: 0.9em;
+      border-top: 1px solid rgba(168, 144, 96, 0.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(30px); }
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5em; }
+      header h2 { font-size: 1.3em; }
+      nav { gap: 15px; flex-wrap: wrap; }
+      section { padding: 60px 20px; }
+      section h2 { font-size: 2em; }
+      .grid { grid-template-columns: 1fr; gap: 25px; }
+    }
   </style>
 </head>
 <body>
@@ -95,7 +324,7 @@
 <section>
   <h2>Positioning for On</h2>
   <p>
-    Design leader specializing in scaling premium retail environments globally while maintaining strong brand identity and operational efficiency. Experience spans concept development, prototype evolution, and multi-market rollout execution—aligned with On’s focus on performance, innovation, and elevated customer experience.
+    Design leader specializing in scaling premium retail environments globally while maintaining strong brand identity and operational efficiency. Experience spans concept development, prototype evolution, and multi-market rollout execution—aligned with On's focus on performance, innovation, and elevated customer experience.
   </p>
 </section>
 
@@ -104,7 +333,7 @@
   <div class="grid">
 
     <div class="card">
-      <img src="https://github.com/tvd78dfswd-cmd/portfolio/blob/main/Retail%20Architect%20Collaborations%20(38).png?raw=true">
+      <img src="https://github.com/tvd78dfswd-cmd/portfolio/blob/main/Retail%20Architect%20Collaborations%20(38).png?raw=true" alt="Scout Motors">
       <div class="card-content">
         <h3>Scout Motors</h3>
         <p>Led retail strategy and rollout framework for next-generation automotive & branded lifestyle showrooms, service centers, and events.</p>
@@ -113,7 +342,7 @@
     </div>
 
     <div class="card">
-      <img src="https://source.unsplash.com/800x600/?grocery,store">
+      <img src="https://source.unsplash.com/800x600/?grocery,store" alt="Amazon Fresh">
       <div class="card-content">
         <h3>Amazon Fresh</h3>
         <p>Executed high-speed rollout of scalable grocery environments across multiple markets.</p>
@@ -122,7 +351,7 @@
     </div>
 
     <div class="card">
-      <img src="https://source.unsplash.com/800x600/?luxury,store">
+      <img src="https://source.unsplash.com/800x600/?luxury,store" alt="Tiffany & Co">
       <div class="card-content">
         <h3>Tiffany & Co.</h3>
         <p>Delivered flagship retail environments translating brand heritage into spatial experience.</p>
@@ -136,23 +365,20 @@
 <section>
   <h2>Selected Work</h2>
   <div class="grid">
-    <div class="card"><img src="https://source.unsplash.com/800x600/?coworking"><div class="card-content"><h3>Industrious</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?gym"><div class="card-content"><h3>Equinox</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?restaurant"><div class="card-content"><h3>Printing House</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?cafe"><div class="card-content"><h3>Blue Box Café</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?fashion,store"><div class="card-content"><h3>The Row</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?coworking" alt="Industrious"><div class="card-content"><h3>Industrious</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?gym" alt="Equinox"><div class="card-content"><h3>Equinox</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?restaurant" alt="Printing House"><div class="card-content"><h3>Printing House</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?cafe" alt="Blue Box Café"><div class="card-content"><h3>Blue Box Café</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?fashion,store" alt="The Row"><div class="card-content"><h3>The Row</h3></div></div>
   </div>
 </section>
 
 <footer>
-  © 2026 Portfolio — Senior Retail Design Lead
+  © 2026 Portfolio — Senior Retail Design Lead • Crafted with passion for bold design
 </footer>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
-
-  // Fade in header
-  gsap.to("header", { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
 
   // Animate sections on scroll
   gsap.utils.toArray("section").forEach(section => {
@@ -168,17 +394,38 @@
     });
   });
 
-  // Stagger cards
+  // Stagger cards with enhanced animation
   gsap.utils.toArray(".grid").forEach(grid => {
     gsap.from(grid.children, {
       opacity: 0,
-      y: 40,
-      stagger: 0.15,
-      duration: 0.8,
+      y: 60,
+      rotation: -5,
+      stagger: 0.12,
+      duration: 1,
+      ease: "back.out",
       scrollTrigger: {
         trigger: grid,
         start: "top 85%"
       }
+    });
+  });
+
+  // Parallax mouse effect on cards
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = (y - centerY) * 0.1;
+      const rotateY = (centerX - x) * 0.1;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
     });
   });
 </script>
