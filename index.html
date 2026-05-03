@@ -1,15 +1,184 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Senior Retail Design Lead Portfolio</title>
+
+  <!-- GSAP for smooth animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #ffffff; color: #111; overflow-x: hidden; }
+
+    header { padding: 80px 20px; text-align: center; border-bottom: 1px solid #eee; opacity: 0; transform: translateY(30px); }
+    header h1 { margin: 0; font-size: 3em; letter-spacing: -1px; }
+    header p { margin-top: 10px; color: #666; }
+
+    nav { display: flex; justify-content: center; gap: 30px; padding: 15px; border-bottom: 1px solid #eee; }
+    nav a { text-decoration: none; color: #111; font-size: 0.9em; position: relative; }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0%;
+      height: 1px;
+      background: #111;
+      transition: width 0.3s ease;
+    }
+    nav a:hover::after { width: 100%; }
+
+    section { padding: 80px 20px; max-width: 1100px; margin: auto; opacity: 0; transform: translateY(40px); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+
+    .card {
+      border: 1px solid #eee;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: white;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.05);
+    }
+
+    .card-content { padding: 20px; }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.85em;
+      text-decoration: none;
+      color: #111;
+      border-bottom: 1px solid #111;
+      transition: opacity 0.3s;
+    }
+
+    .btn:hover { opacity: 0.6; }
+
+    footer { text-align: center; padding: 40px; color: #777; font-size: 0.8em; }
+  </style>
 </head>
 <body>
-    <h1>Welcome to my Portfolio</h1>
-    <h2>Retail Design Projects</h2>
-    <p>Here you will find a selection of my work in retail design.</p>
-    <ul>
-        <li>Project 1</li>
-        <li>Project 2</li>
-        <li>Project 3</li>
-    </ul>
+
+<header>
+  <h1>Senior Retail Design Lead</h1>
+  <p>Global Rollouts • Brand Environments • Performance-Driven Retail Design</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="case-scout.html">Scout Motors</a>
+  <a href="case-amazon.html">Amazon Fresh</a>
+  <a href="case-tiffany.html">Tiffany & Co.</a>
+</nav>
+
+<section>
+  <h2>Positioning for On</h2>
+  <p>
+    Design leader specializing in scaling premium retail environments globally while maintaining strong brand identity and operational efficiency. Experience spans concept development, prototype evolution, and multi-market rollout execution—aligned with On’s focus on performance, innovation, and elevated customer experience.
+  </p>
+</section>
+
+<section>
+  <h2>Key Experience</h2>
+  <div class="grid">
+
+    <div class="card">
+      <img src="https://source.unsplash.com/800x600/?electric,showroom">
+      <div class="card-content">
+        <h3>Scout Motors</h3>
+        <p>Led retail strategy and rollout framework for next-generation automotive showrooms.</p>
+        <a href="case-scout.html" class="btn">View Case Study →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/800x600/?grocery,store">
+      <div class="card-content">
+        <h3>Amazon Fresh</h3>
+        <p>Executed high-speed rollout of scalable grocery environments across multiple markets.</p>
+        <a href="case-amazon.html" class="btn">View Case Study →</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://source.unsplash.com/800x600/?luxury,store">
+      <div class="card-content">
+        <h3>Tiffany & Co.</h3>
+        <p>Delivered flagship retail environments translating brand heritage into spatial experience.</p>
+        <a href="case-tiffany.html" class="btn">View Case Study →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <h2>Selected Work</h2>
+  <div class="grid">
+    <div class="card"><img src="https://source.unsplash.com/800x600/?coworking"><div class="card-content"><h3>Industrious</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?gym"><div class="card-content"><h3>Equinox</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?restaurant"><div class="card-content"><h3>Printing House</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?cafe"><div class="card-content"><h3>Blue Box Café</h3></div></div>
+    <div class="card"><img src="https://source.unsplash.com/800x600/?fashion,store"><div class="card-content"><h3>The Row</h3></div></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Portfolio — Senior Retail Design Lead
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Fade in header
+  gsap.to("header", { opacity: 1, y: 0, duration: 1, ease: "power2.out" });
+
+  // Animate sections on scroll
+  gsap.utils.toArray("section").forEach(section => {
+    gsap.to(section, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%"
+      }
+    });
+  });
+
+  // Stagger cards
+  gsap.utils.toArray(".grid").forEach(grid => {
+    gsap.from(grid.children, {
+      opacity: 0,
+      y: 40,
+      stagger: 0.15,
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: grid,
+        start: "top 85%"
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
