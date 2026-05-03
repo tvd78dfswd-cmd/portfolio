@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Isaac Chen, AIA - Adventurous Design</title>
+  <title>Isaac Chen, AIA - Architectural Portfolio</title>
 
   <!-- GSAP for smooth animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
     * { box-sizing: border-box; }
 
     body { 
-      font-family: 'Segoe UI', Helvetica, sans-serif; 
+      font-family: 'DM Sans', sans-serif; 
       margin: 0; 
       background: linear-gradient(135deg, #1a1410 0%, #2d2420 100%);
       color: #e8e4d9; 
@@ -21,7 +24,6 @@
       scroll-behavior: smooth;
     }
 
-    /* Animated background */
     body::before {
       content: '';
       position: fixed;
@@ -29,15 +31,33 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 20% 50%, rgba(139, 101, 66, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 80%, rgba(101, 139, 101, 0.1) 0%, transparent 50%);
+      background: radial-gradient(circle at 20% 50%, rgba(139, 101, 66, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(101, 139, 101, 0.08) 0%, transparent 50%);
       pointer-events: none;
       z-index: -1;
     }
 
-    header { 
-      padding: 120px 20px 80px; 
-      text-align: center; 
+    /* Main Layout */
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
+      min-height: 100vh;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      padding: 0;
+      position: relative;
+    }
+
+    /* Header/Hero Section */
+    header {
+      padding: 100px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
       overflow: hidden;
     }
@@ -45,239 +65,246 @@
     header::before {
       content: '';
       position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(139, 101, 66, 0.12) 0%, transparent 70%);
-      animation: float 6s ease-in-out infinite;
+      top: -20%;
+      right: -10%;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(139, 101, 66, 0.15) 0%, transparent 70%);
+      animation: float 8s ease-in-out infinite;
     }
 
-    header::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(101, 139, 101, 0.12) 0%, transparent 70%);
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    header h1 { 
-      margin: 0; 
-      font-size: 4.5em; 
-      letter-spacing: -2px;
-      color: #d4af8f;
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.5em;
       font-weight: 900;
+      margin: 0;
+      color: #d4af8f;
+      letter-spacing: -3px;
       position: relative;
       z-index: 1;
+      line-height: 1;
       opacity: 0;
-      transform: translateY(30px);
       animation: slideInUp 1s ease-out forwards;
     }
 
     header h2 {
+      font-family: 'Playfair Display', serif;
       font-size: 1.8em;
+      font-weight: 700;
       color: #a89060;
-      margin: 15px 0 0 0;
-      font-weight: 600;
+      margin: 20px 0 0 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       opacity: 0;
       animation: slideInUp 1s ease-out 0.2s forwards;
     }
 
-    header p { 
-      margin-top: 15px; 
-      color: #b8a898;
-      font-size: 1.1em;
+    header .subtitle {
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      color: #b8a898;
+      font-size: 1.05em;
+      font-weight: 500;
+      line-height: 1.8;
+      margin-top: 30px;
+      letter-spacing: 0.5px;
       opacity: 0;
       animation: slideInUp 1s ease-out 0.4s forwards;
     }
 
-    nav { 
-      display: flex; 
-      justify-content: center; 
-      gap: 40px; 
-      padding: 30px; 
-      backdrop-filter: blur(10px);
-      background: rgba(26, 20, 16, 0.6);
-      border-bottom: 1px solid rgba(168, 144, 96, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav a { 
-      text-decoration: none; 
-      color: #d4af8f;
-      font-size: 0.95em; 
+    /* Project Grid Section */
+    .projects-section {
+      padding: 80px;
       position: relative;
-      font-weight: 500;
-      transition: color 0.3s ease;
     }
 
-    nav a::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -8px;
-      width: 0%;
-      height: 2px;
-      background: #a89060;
-      transition: width 0.4s ease;
-    }
-
-    nav a:hover {
+    .projects-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      font-weight: 900;
       color: #d4af8f;
+      margin: 0 0 60px 0;
+      letter-spacing: -2px;
+      text-transform: uppercase;
     }
 
-    nav a:hover::before { 
-      width: 100%;
-    }
-
-    section { 
-      padding: 100px 20px; 
-      max-width: 1200px; 
-      margin: auto; 
-      position: relative;
-      z-index: 1;
-    }
-
-    section h2 {
-      font-size: 2.8em;
-      margin-bottom: 15px;
-      color: #d4af8f;
-    }
-
-    section > p {
-      color: #b8a898;
-      line-height: 1.8;
-      font-size: 1.05em;
-      max-width: 800px;
-    }
-
-    .grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
       gap: 40px;
-      margin-top: 50px;
     }
 
-    .card {
-      border: 1px solid rgba(168, 144, 96, 0.3);
-      border-radius: 20px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(139, 101, 66, 0.08), rgba(101, 139, 101, 0.08));
-      backdrop-filter: blur(10px);
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    .project-card {
       position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      aspect-ratio: 1;
+      cursor: pointer;
       opacity: 0;
       transform: translateY(40px);
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
+    .project-card img {
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-      transition: left 0.6s ease;
-      z-index: 2;
-    }
-
-    .card:hover::before {
-      left: 100%;
-    }
-
-    .card:hover {
-      transform: translateY(-20px) scale(1.02);
-      border-color: rgba(168, 144, 96, 0.6);
-      box-shadow: 0 30px 60px rgba(139, 101, 66, 0.15), 
-                  inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    .card img {
-      width: 100%;
-      height: 280px;
       object-fit: cover;
       transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       filter: brightness(0.85) sepia(0.1);
     }
 
-    .card:hover img {
-      transform: scale(1.1) rotate(2deg);
+    .project-card:hover img {
+      transform: scale(1.08);
       filter: brightness(0.95) sepia(0.1);
     }
 
-    .card-content { 
-      padding: 30px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .card h3 {
-      font-size: 1.5em;
-      margin: 0 0 10px 0;
-      color: #d4af8f;
-    }
-
-    .card p {
-      color: #b8a898;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 15px;
-      font-size: 0.9em;
-      text-decoration: none;
-      color: #d4af8f;
-      border: 2px solid #a89060;
-      padding: 10px 20px;
-      border-radius: 50px;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
+    .project-overlay {
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: #a89060;
-      z-index: -1;
-      transition: left 0.3s ease;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26, 20, 16, 0.8), rgba(212, 175, 143, 0.1));
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
     }
 
-    .btn:hover {
-      color: #1a1410;
-      left: 0;
+    .project-card:hover .project-overlay {
+      opacity: 1;
     }
 
-    .btn:hover::before {
-      left: 0;
+    .project-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #d4af8f;
+      margin: 0 0 10px 0;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
-    footer { 
-      text-align: center; 
-      padding: 60px 20px; 
-      color: #8b7d6b; 
+    .project-overlay p {
+      color: #b8a898;
       font-size: 0.9em;
-      border-top: 1px solid rgba(168, 144, 96, 0.1);
-      position: relative;
-      z-index: 1;
+      font-weight: 500;
+      margin: 0;
+      line-height: 1.6;
     }
 
+    /* Right Sidebar */
+    .sidebar {
+      background: rgba(26, 20, 16, 0.9);
+      border-left: 1px solid rgba(168, 144, 96, 0.2);
+      padding: 60px 20px;
+      height: 100vh;
+      overflow-y: auto;
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 320px;
+      backdrop-filter: blur(10px);
+    }
+
+    .sidebar-header {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2em;
+      font-weight: 700;
+      color: #d4af8f;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(168, 144, 96, 0.3);
+    }
+
+    .sidebar-section {
+      margin-bottom: 40px;
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75em;
+      font-weight: 700;
+      color: #a89060;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .project-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project-item {
+      font-size: 0.85em;
+      font-weight: 500;
+      color: #b8a898;
+      padding: 10px 12px;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+    }
+
+    .project-item:hover {
+      color: #d4af8f;
+      border-left-color: #a89060;
+      padding-left: 16px;
+    }
+
+    .project-item.active {
+      color: #d4af8f;
+      border-left-color: #d4af8f;
+      padding-left: 16px;
+      font-weight: 700;
+    }
+
+    .contact-info {
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(168, 144, 96, 0.2);
+    }
+
+    .contact-item {
+      margin-bottom: 20px;
+      font-size: 0.8em;
+    }
+
+    .contact-label {
+      display: block;
+      font-weight: 700;
+      color: #a89060;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .contact-value {
+      color: #b8a898;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-value:hover {
+      color: #d4af8f;
+    }
+
+    /* Footer */
+    footer {
+      grid-column: 1;
+      padding: 80px;
+      text-align: center;
+      color: #8b7d6b;
+      font-size: 0.8em;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(168, 144, 96, 0.1);
+    }
+
+    /* Animations */
     @keyframes slideInUp {
       from {
         opacity: 0;
@@ -294,138 +321,244 @@
       50% { transform: translateY(30px); }
     }
 
+    /* Scrollbar Styling */
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .sidebar::-webkit-scrollbar-track {
+      background: rgba(168, 144, 96, 0.1);
+    }
+
+    .sidebar::-webkit-scrollbar-thumb {
+      background: rgba(168, 144, 96, 0.3);
+      border-radius: 3px;
+    }
+
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: rgba(168, 144, 96, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: 1px solid rgba(168, 144, 96, 0.2);
+        padding: 40px;
+      }
+
+      header {
+        padding: 60px 40px;
+        min-height: auto;
+      }
+
+      .projects-section {
+        padding: 60px 40px;
+      }
+
+      .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      footer {
+        padding: 40px;
+      }
+    }
+
     @media (max-width: 768px) {
-      header h1 { font-size: 2.5em; }
-      header h2 { font-size: 1.3em; }
-      nav { gap: 15px; flex-wrap: wrap; }
-      section { padding: 60px 20px; }
-      section h2 { font-size: 2em; }
-      .grid { grid-template-columns: 1fr; gap: 25px; }
+      header {
+        padding: 40px 20px;
+      }
+
+      header h1 {
+        font-size: 3em;
+      }
+
+      header h2 {
+        font-size: 1.2em;
+      }
+
+      .projects-section {
+        padding: 40px 20px;
+      }
+
+      .projects-section h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        padding: 30px 20px;
+      }
+
+      .sidebar-section {
+        margin-bottom: 0;
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Isaac Chen, AIA</h1>
-  <h2>Senior Retail Design Lead</h2>
-  <p>Global Rollouts • Brand Environments • Performance-Driven Retail Design</p>
-</header>
+<div class="container">
+  <main class="main-content">
+    <header>
+      <h1>ISAAC CHEN</h1>
+      <h2>AIA</h2>
+      <p class="subtitle">Senior Retail Design Lead specializing in global rollouts, brand environments, and performance-driven retail architecture.</p>
+    </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="case-scout.html">Scout Motors</a>
-  <a href="case-amazon.html">Amazon Fresh</a>
-  <a href="case-Industrious.html">Industrious</a>
-  <a href="case-tiffany.html">Tiffany & Co.</a>
-  <a href="case-Equinox.html">Equinox</a>
-</nav>
+    <section class="projects-section">
+      <h2>Featured Work</h2>
+      <div class="project-grid">
+        <div class="project-card" data-project="scout">
+          <img src="https://github.com/tvd78dfswd-cmd/portfolio/blob/main/Retail%20Architect%20Collaborations%20(38).png?raw=true" alt="Scout Motors">
+          <div class="project-overlay">
+            <h3>Scout Motors</h3>
+            <p>Retail strategy & showroom design framework</p>
+          </div>
+        </div>
 
-<section>
-  <h2>Positioning for On</h2>
-  <p>
-    Design leader specializing in scaling premium retail environments globally while maintaining strong brand identity and operational efficiency. Experience spans concept development, prototype evolution, and multi-market rollout execution—aligned with On's focus on performance, innovation, and elevated customer experience.
-  </p>
-</section>
+        <div class="project-card" data-project="amazon">
+          <img src="https://source.unsplash.com/800x600/?grocery,store" alt="Amazon Fresh">
+          <div class="project-overlay">
+            <h3>Amazon Fresh</h3>
+            <p>Scalable grocery environments rollout</p>
+          </div>
+        </div>
 
-<section>
-  <h2>Key Experience</h2>
-  <div class="grid">
+        <div class="project-card" data-project="tiffany">
+          <img src="https://source.unsplash.com/800x600/?luxury,store" alt="Tiffany & Co">
+          <div class="project-overlay">
+            <h3>Tiffany & Co.</h3>
+            <p>Flagship retail environments</p>
+          </div>
+        </div>
 
-    <div class="card">
-      <img src="https://github.com/tvd78dfswd-cmd/portfolio/blob/main/Retail%20Architect%20Collaborations%20(38).png?raw=true" alt="Scout Motors">
-      <div class="card-content">
-        <h3>Scout Motors</h3>
-        <p>Led retail strategy and rollout framework for next-generation automotive & branded lifestyle showrooms, service centers, and events.</p>
-        <a href="case-scout.html" class="btn">View Case Study →</a>
+        <div class="project-card" data-project="industrious">
+          <img src="https://source.unsplash.com/800x600/?coworking" alt="Industrious">
+          <div class="project-overlay">
+            <h3>Industrious</h3>
+            <p>Coworking space design</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="equinox">
+          <img src="https://source.unsplash.com/800x600/?gym" alt="Equinox">
+          <div class="project-overlay">
+            <h3>Equinox</h3>
+            <p>Premium fitness environments</p>
+          </div>
+        </div>
+
+        <div class="project-card" data-project="the-row">
+          <img src="https://source.unsplash.com/800x600/?fashion,store" alt="The Row">
+          <div class="project-overlay">
+            <h3>The Row</h3>
+            <p>Luxury fashion retail</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © 2026 ISAAC CHEN, AIA • ALL RIGHTS RESERVED
+    </footer>
+  </main>
+
+  <aside class="sidebar">
+    <div class="sidebar-header">Menu</div>
+
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Projects</span>
+      <div class="project-list">
+        <a href="#scout" class="project-item active">Scout Motors</a>
+        <a href="#amazon" class="project-item">Amazon Fresh</a>
+        <a href="#tiffany" class="project-item">Tiffany & Co.</a>
+        <a href="#industrious" class="project-item">Industrious</a>
+        <a href="#equinox" class="project-item">Equinox</a>
+        <a href="#the-row" class="project-item">The Row</a>
+        <a href="#" class="project-item">Printing House</a>
+        <a href="#" class="project-item">Blue Box Café</a>
       </div>
     </div>
 
-    <div class="card">
-      <img src="https://source.unsplash.com/800x600/?grocery,store" alt="Amazon Fresh">
-      <div class="card-content">
-        <h3>Amazon Fresh</h3>
-        <p>Executed high-speed rollout of scalable grocery environments across multiple markets.</p>
-        <a href="case-amazon.html" class="btn">View Case Study →</a>
+    <div class="sidebar-section">
+      <span class="sidebar-section-title">Services</span>
+      <div class="project-list">
+        <a href="#" class="project-item">Concept Development</a>
+        <a href="#" class="project-item">Retail Strategy</a>
+        <a href="#" class="project-item">Global Rollouts</a>
+        <a href="#" class="project-item">Brand Environments</a>
       </div>
     </div>
 
-    <div class="card">
-      <img src="https://source.unsplash.com/800x600/?luxury,store" alt="Tiffany & Co">
-      <div class="card-content">
-        <h3>Tiffany & Co.</h3>
-        <p>Delivered flagship retail environments translating brand heritage into spatial experience.</p>
-        <a href="case-tiffany.html" class="btn">View Case Study →</a>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a href="mailto:isaac@example.com" class="contact-value">isaac.chen@design.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <a href="tel:+1234567890" class="contact-value">+1 (555) 123-4567</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">New York, USA</span>
       </div>
     </div>
-
-  </div>
-</section>
-
-<section>
-  <h2>Selected Work</h2>
-  <div class="grid">
-    <div class="card"><img src="https://source.unsplash.com/800x600/?coworking" alt="Industrious"><div class="card-content"><h3>Industrious</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?gym" alt="Equinox"><div class="card-content"><h3>Equinox</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?restaurant" alt="Printing House"><div class="card-content"><h3>Printing House</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?cafe" alt="Blue Box Café"><div class="card-content"><h3>Blue Box Café</h3></div></div>
-    <div class="card"><img src="https://source.unsplash.com/800x600/?fashion,store" alt="The Row"><div class="card-content"><h3>The Row</h3></div></div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Portfolio — Senior Retail Design Lead • Crafted with passion for bold design
-</footer>
+  </aside>
+</div>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
 
-  // Animate sections on scroll
-  gsap.utils.toArray("section").forEach(section => {
-    gsap.to(section, {
+  // Stagger project cards
+  gsap.utils.toArray(".project-card").forEach((card, index) => {
+    gsap.to(card, {
       opacity: 1,
       y: 0,
-      duration: 1,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: section,
-        start: "top 80%"
-      }
-    });
-  });
-
-  // Stagger cards with enhanced animation
-  gsap.utils.toArray(".grid").forEach(grid => {
-    gsap.from(grid.children, {
-      opacity: 0,
-      y: 60,
-      rotation: -5,
-      stagger: 0.12,
-      duration: 1,
+      duration: 0.8,
       ease: "back.out",
+      delay: index * 0.1,
       scrollTrigger: {
-        trigger: grid,
+        trigger: card,
         start: "top 85%"
       }
     });
   });
 
-  // Parallax mouse effect on cards
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = (y - centerY) * 0.1;
-      const rotateY = (centerX - x) * 0.1;
-      
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  // Sidebar navigation highlighting
+  document.querySelectorAll('.project-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+      document.querySelectorAll('.project-item').forEach(i => i.classList.remove('active'));
+      this.classList.add('active');
     });
+  });
 
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     });
   });
 </script>
