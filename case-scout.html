@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scout Motors — Retail Rollout Case Study</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #fff; color: #111; }
+    .container { max-width: 1000px; margin: auto; padding: 60px 20px; }
+
+    h1 { font-size: 3em; margin-bottom: 10px; }
+    h2 { margin-top: 60px; font-size: 1.6em; }
+    p { color: #444; line-height: 1.6; }
+
+    .hero {
+      height: 70vh;
+      background: url('https://source.unsplash.com/1600x900/?electric,showroom') center/cover;
+      display: flex;
+      align-items: flex-end;
+      padding: 40px;
+      color: white;
+    }
+
+    .hero h1 { color: white; }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .meta div { font-size: 0.9em; }
+
+    .highlight {
+      font-size: 1.4em;
+      margin: 40px 0;
+      line-height: 1.4;
+    }
+
+    .image {
+      width: 100%;
+      margin: 40px 0;
+    }
+
+    .image img { width: 100%; border-radius: 12px; }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+      gap: 40px;
+    }
+
+    .fade { opacity: 0; transform: translateY(40px); }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>Scout Motors<br>Retail Rollout</h1>
+</div>
+
+<div class="container">
+
+  <div class="meta fade">
+    <div><strong>Role</strong><br>Senior Design Lead</div>
+    <div><strong>Scope</strong><br>Prototype + National Rollout</div>
+    <div><strong>Focus</strong><br>Scalability, Brand Experience</div>
+  </div>
+
+  <p class="highlight fade">
+    Built a scalable retail system translating a new automotive brand into a physical experience—balancing storytelling, operational efficiency, and rapid deployment.
+  </p>
+
+  <h2 class="fade">The Challenge</h2>
+  <p class="fade">
+    Launch a new automotive retail concept from zero. The system needed to communicate brand identity while supporting rapid multi-market rollout under tight timelines and evolving product definition.
+  </p>
+
+  <div class="image fade">
+    <img src="https://source.unsplash.com/1200x800/?showroom,architecture">
+  </div>
+
+  <h2 class="fade">Approach</h2>
+  <div class="grid-2">
+    <p class="fade">
+      Developed a modular design framework allowing core brand elements to remain consistent while adapting to diverse site conditions. Prioritized flexible planning grids, repeatable fixture systems, and material strategies that scale.
+    </p>
+    <p class="fade">
+      Integrated customer journey mapping into spatial planning—aligning digital touchpoints, product display, and storytelling zones to create a cohesive experience.
+    </p>
+  </div>
+
+  <div class="image fade">
+    <img src="https://source.unsplash.com/1200x800/?minimal,interior">
+  </div>
+
+  <h2 class="fade">System Thinking</h2>
+  <p class="fade">
+    Established a prototype kit-of-parts approach enabling faster rollout cycles. Standardized components reduced design iteration time and improved coordination across architecture, fabrication, and construction teams.
+  </p>
+
+  <h2 class="fade">Impact</h2>
+  <div class="grid-2">
+    <p class="fade">• Enabled consistent brand execution across multiple markets</p>
+    <p class="fade">• Reduced build timelines through modular design</p>
+    <p class="fade">• Created a scalable framework for future expansion</p>
+    <p class="fade">• Aligned cross-functional teams through clear design system</p>
+  </div>
+
+</div>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray('.fade').forEach(el => {
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%'
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
